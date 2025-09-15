@@ -22,7 +22,7 @@
             spec = {
               securityContext.fsGroup = 1000;
               containers.notify = {
-                image = "ghcr.io/fkouhai/rss-notify-x86_64-linux:0.0.4";
+                image = "ghcr.io/fkouhai/rss_notify-x86_64-linux:0.0.4";
                 imagePullPolicy = "IfNotPresent";
               };
             };
