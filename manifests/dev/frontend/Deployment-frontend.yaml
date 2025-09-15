@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: demo
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: frontend
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: frontend
+    spec:
+      containers:
+        - image: ghcr.io/fkouhai/rss-frontend-x86_64-linux:0.0.4
+          imagePullPolicy: IfNotPresent
+          name: frontend
+      securityContext:
+        fsGroup: 1000

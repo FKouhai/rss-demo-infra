@@ -1,0 +1,15 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: frontend
+  namespace: argocd
+spec:
+  destination:
+    namespace: demo
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: ./manifests/dev/frontend
+    repoURL: https://github.com/FKouhai/rss-demo-infra.git
+    targetRevision: main
+  syncPolicy: {}
