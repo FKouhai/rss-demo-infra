@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: frontend
+  namespace: demo
+spec:
+  rules:
+    - host: frontend.143.47.60.246.nip.io
+      http:
+        paths:
+          - backend:
+              service:
+                name: frontend
+                port:
+                  number: 4321
+            path: /
+            pathType: Prefix

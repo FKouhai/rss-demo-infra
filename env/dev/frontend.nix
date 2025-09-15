@@ -32,6 +32,23 @@
           selector = labels;
           ports.http.port = 4321;
         };
+        ingresses.frontend.spec = {
+          rules = [
+            {
+              host = "frontend.143.47.60.246.nip.io";
+              http.paths = [
+                {
+                  path = "/";
+                  pathType = "Prefix";
+                  backend.service = {
+                    name = "frontend";
+                    port.number = 4321;
+                  };
+                }
+              ];
+            }
+          ];
+        };
       };
   };
 }
