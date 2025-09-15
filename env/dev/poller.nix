@@ -27,7 +27,7 @@
                 env = [
                   {
                     name = "NOTIFICATION_ENDPOINT";
-                    value = "rss-notify.demo.cluster.svc.local:3000";
+                    value = "http://notify.demo.cluster.svc.local:3000/push";
                   }
                   {
                     name = "OTEL_EP";
@@ -45,6 +45,23 @@
         services.poller.spec = {
           selector = labels;
           ports.http.port = 3000;
+        };
+        ingresses.poller.spec = {
+          rules = [
+            {
+              host = "poller.143.47.60.246.nip.io";
+              http.paths = [
+                {
+                  path = "/";
+                  pathType = "Prefix";
+                  backend.service = {
+                    name = "poller";
+                    port.number = 3000;
+                  };
+                }
+              ];
+            }
+          ];
         };
       };
   };

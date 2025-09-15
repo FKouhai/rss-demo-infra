@@ -15,7 +15,7 @@ spec:
       containers:
         - env:
             - name: NOTIFICATION_ENDPOINT
-              value: rss-notify.demo.cluster.svc.local:3000
+              value: http://notify.demo.cluster.svc.local:3000/push
             - name: OTEL_EP
               value: ""
             - name: NOTIFICATION_SENDER
