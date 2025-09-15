@@ -27,7 +27,7 @@
                 env = [
                   {
                     name = "NOTIFICATION_ENDPOINT";
-                    value = "http://notify.demo.cluster.svc.local:3000/push";
+                    value = "http://notify.demo.svc.cluster.local:3000/push";
                   }
                   {
                     name = "OTEL_EP";

@@ -27,7 +27,7 @@
                 env = [
                   {
                     name = "POLLER_ENDPOINT";
-                    value = "http://poller.demo.cluster.svc.local:3000/rss";
+                    value = "http://poller.demo.svc.cluster.local:3000/rss";
                   }
                 ];
               };
