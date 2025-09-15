@@ -13,7 +13,7 @@ spec:
         app.kubernetes.io/name: frontend
     spec:
       containers:
-        - image: ghcr.io/fkouhai/rss-frontend-x86_64-linux:0.0.4
+        - image: ghcr.io/fkouhai/rss_frontend-x86_64-linux:0.0.4
           imagePullPolicy: IfNotPresent
           name: frontend
       securityContext:
