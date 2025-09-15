@@ -22,7 +22,7 @@
             spec = {
               securityContext.fsGroup = 1000;
               containers.frontend = {
-                image = "ghcr.io/fkouhai/rss_frontend-x86_64-linux:0.0.7";
+                image = "ghcr.io/fkouhai/rss_frontend-x86_64-linux:0.0.8";
                 imagePullPolicy = "IfNotPresent";
                 env = [
                   {
