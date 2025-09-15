@@ -24,6 +24,12 @@
               containers.frontend = {
                 image = "ghcr.io/fkouhai/rss_frontend-x86_64-linux:0.0.4";
                 imagePullPolicy = "IfNotPresent";
+                env = [
+                  {
+                    name = "POLLER_ENDPOINT";
+                    value = "http://poller.demo.cluster.svc.local:3000/rss";
+                  }
+                ];
               };
             };
           };
