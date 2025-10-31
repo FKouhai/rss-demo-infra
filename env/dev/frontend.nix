@@ -41,7 +41,7 @@
         ingresses.frontend.spec = {
           rules = [
             {
-              host = "frontend.143.47.60.246.nip.io";
+              host = "rss.universe.home";
               http.paths = [
                 {
                   path = "/";
