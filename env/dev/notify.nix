@@ -27,7 +27,7 @@
                 env = [
                   {
                     name = "OTEL_EP";
-                    value = "signoz-otel-collector.signoz.cluster.local:4317";
+                    value = "signoz-otel-collector.signoz.svc.cluster.local:4317";
                   }
                 ];
               };

@@ -5,7 +5,7 @@ metadata:
   namespace: demo
 spec:
   rules:
-    - host: poller.143.47.60.246.nip.io
+    - host: poller.universe.home
       http:
         paths:
           - backend:
