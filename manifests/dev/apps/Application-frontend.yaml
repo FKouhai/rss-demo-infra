@@ -12,4 +12,7 @@ spec:
     path: ./manifests/dev/frontend
     repoURL: https://github.com/FKouhai/rss-demo-infra.git
     targetRevision: main
-  syncPolicy: {}
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
