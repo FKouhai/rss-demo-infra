@@ -22,7 +22,7 @@
             spec = {
               securityContext.fsGroup = 1000;
               containers.poller = {
-                image = "ghcr.io/fkouhai/rss_poller-x86_64-linux:0.0.4";
+                image = "ghcr.io/fkouhai/rss_poller-x86_64-linux:0.1.7";
                 imagePullPolicy = "IfNotPresent";
                 env = [
                   {
@@ -31,11 +31,11 @@
                   }
                   {
                     name = "OTEL_EP";
-                    value = "";
+                    value = "signoz-otel-collector.signoz.cluster.local:4317";
                   }
                   {
                     name = "NOTIFICATION_SENDER";
-                    value = "https://discord.com/api/webhooks/1400936674522828892/rEYQaa9DRY9pKse9YPT4XjWQmDOd6gARpp6OdYU27icRoucGCkGs3zhdlxhNuOucSiSZ";
+                    value = "https://discord.com/api/webhooks/1433874286921253005/2g9_U5BsPm-YUB0fdx4vaqmhV_mz-VHwOYBabV5ZGjHXggwTC_4jbh1uuTdg7WHyxcXN";
                   }
                 ];
               };
@@ -49,7 +49,7 @@
         ingresses.poller.spec = {
           rules = [
             {
-              host = "poller.143.47.60.246.nip.io";
+              host = "poller.universe.home";
               http.paths = [
                 {
                   path = "/";

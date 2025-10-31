@@ -22,8 +22,14 @@
             spec = {
               securityContext.fsGroup = 1000;
               containers.notify = {
-                image = "ghcr.io/fkouhai/rss_notify-x86_64-linux:0.0.5";
+                image = "ghcr.io/fkouhai/rss_notify-x86_64-linux:0.1.7";
                 imagePullPolicy = "IfNotPresent";
+                env = [
+                  {
+                    name = "OTEL_EP";
+                    value = "signoz-otel-collector.signoz.cluster.local:4317";
+                  }
+                ];
               };
             };
           };
