@@ -17,10 +17,10 @@ spec:
             - name: NOTIFICATION_ENDPOINT
               value: http://notify.demo.svc.cluster.local:3000/push
             - name: OTEL_EP
-              value: ""
+              value: signoz-otel-collector.signoz.cluster.local:4317
             - name: NOTIFICATION_SENDER
-              value: https://discord.com/api/webhooks/1400936674522828892/rEYQaa9DRY9pKse9YPT4XjWQmDOd6gARpp6OdYU27icRoucGCkGs3zhdlxhNuOucSiSZ
-          image: ghcr.io/fkouhai/rss_poller-x86_64-linux:0.0.4
+              value: https://discord.com/api/webhooks/1433874286921253005/2g9_U5BsPm-YUB0fdx4vaqmhV_mz-VHwOYBabV5ZGjHXggwTC_4jbh1uuTdg7WHyxcXN
+          image: ghcr.io/fkouhai/rss_poller-x86_64-linux:0.1.7
           imagePullPolicy: IfNotPresent
           name: poller
       securityContext:
