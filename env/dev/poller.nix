@@ -5,7 +5,7 @@
 
     # Automatically generate a namespace resource for the
     # above set namespace
-    createNamespace = true;
+    createNamespace = false;
 
     resources =
       let
