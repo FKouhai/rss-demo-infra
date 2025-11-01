@@ -18,6 +18,12 @@ spec:
               value: signoz-otel-collector.signoz.svc.cluster.local:4317
           image: ghcr.io/fkouhai/rss_notify-x86_64-linux:0.1.7
           imagePullPolicy: IfNotPresent
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 3000
+            initialDelaySeconds: 3
+            periodSeconds: 5
           name: notify
       securityContext:
         fsGroup: 1000
