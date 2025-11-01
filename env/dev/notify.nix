@@ -24,6 +24,14 @@
               containers.notify = {
                 image = "ghcr.io/fkouhai/rss_notify-x86_64-linux:0.1.7";
                 imagePullPolicy = "IfNotPresent";
+                livenessProbe = {
+                  httpGet = {
+                    path = "/healthz";
+                    port = 3000;
+                  };
+                  initialDelaySeconds = 3;
+                  periodSeconds = 5;
+                };
                 env = [
                   {
                     name = "OTEL_EP";
