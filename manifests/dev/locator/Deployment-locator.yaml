@@ -1,33 +1,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: notify
+  name: locator
   namespace: demo
 spec:
   selector:
     matchLabels:
-      app.kubernetes.io/name: notify
+      app.kubernetes.io/name: locator
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: notify
+        app.kubernetes.io/name: locator
     spec:
       containers:
         - env:
             - name: OTEL_EP
               value: signoz-otel-collector.signoz.svc.cluster.local:4317
-            - name: LOCATOR_URL
-              value: http://locator.demo.svc.cluster.local:3000
-            - name: SERVICE_FQDN
-              value: notify.demo.svc.cluster.local:3000
-          image: ghcr.io/fkouhai/rss_notify-x86_64-linux:0.2.1
+          image: ghcr.io/fkouhai/rss_locator-x86_64-linux:0.2.1
           imagePullPolicy: IfNotPresent
           livenessProbe:
             httpGet:
-              path: /healthz
+              path: /health
               port: 3000
             initialDelaySeconds: 3
             periodSeconds: 5
-          name: notify
+          name: locator
       securityContext:
         fsGroup: 1000
