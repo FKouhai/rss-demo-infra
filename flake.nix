@@ -30,6 +30,7 @@
               ./env/dev/poller.nix
               ./env/dev/frontend.nix
               ./env/dev/notify.nix
+              ./env/dev/locator.nix
             ];
           };
         };

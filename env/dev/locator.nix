@@ -1,5 +1,5 @@
 {
-  applications.notify = {
+  applications.locator = {
     # All resources will be deployed into this namespace.
     namespace = "demo";
 
@@ -10,23 +10,23 @@
     resources =
       let
         labels = {
-          "app.kubernetes.io/name" = "notify";
+          "app.kubernetes.io/name" = "locator";
         };
       in
       {
-        # Define a deployment for running an notify server
-        deployments.notify.spec = {
+        # Define a deployment for running an locator server
+        deployments.locator.spec = {
           selector.matchLabels = labels;
           template = {
             metadata.labels = labels;
             spec = {
               securityContext.fsGroup = 1000;
-              containers.notify = {
-                image = "ghcr.io/fkouhai/rss_notify-x86_64-linux:0.2.1";
+              containers.locator = {
+                image = "ghcr.io/fkouhai/rss_locator-x86_64-linux:0.2.1";
                 imagePullPolicy = "IfNotPresent";
                 livenessProbe = {
                   httpGet = {
-                    path = "/healthz";
+                    path = "/health";
                     port = 3000;
                   };
                   initialDelaySeconds = 3;
@@ -37,20 +37,12 @@
                     name = "OTEL_EP";
                     value = "signoz-otel-collector.signoz.svc.cluster.local:4317";
                   }
-                  {
-                    name = "LOCATOR_URL";
-                    value = "http://locator.demo.svc.cluster.local:3000";
-                  }
-                  {
-                    name = "SERVICE_FQDN";
-                    value = "notify.demo.svc.cluster.local:3000";
-                  }
                 ];
               };
             };
           };
         };
-        services.notify.spec = {
+        services.locator.spec = {
           selector = labels;
           ports.http.port = 3000;
         };

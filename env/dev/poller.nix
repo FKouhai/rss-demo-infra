@@ -34,12 +34,16 @@
                 };
                 env = [
                   {
-                    name = "NOTIFICATION_SENDER";
-                    value = "http://notify.demo.svc.cluster.local:3000/push";
-                  }
-                  {
                     name = "OTEL_EP";
                     value = "signoz-otel-collector.signoz.svc.cluster.local:4317";
+                  }
+                  {
+                    name = "LOCATOR_URL";
+                    value = "http://locator.demo.svc.cluster.local:3000";
+                  }
+                  {
+                    name = "SERVICE_FQDN";
+                    value = "poller.demo.svc.cluster.local:3000";
                   }
                   {
                     name = "NOTIFICATION_ENDPOINT";
