@@ -22,7 +22,7 @@
             spec = {
               securityContext.fsGroup = 1000;
               containers.poller = {
-                image = "ghcr.io/fkouhai/rss_poller-x86_64-linux:0.2.0";
+                image = "ghcr.io/fkouhai/rss_poller-x86_64-linux:0.2.1";
                 imagePullPolicy = "IfNotPresent";
                 livenessProbe = {
                   httpGet = {
