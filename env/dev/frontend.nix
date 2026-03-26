@@ -54,22 +54,27 @@
           selector = labels;
           ports.http.port = 4321;
         };
-        ingresses.frontend.spec = {
-          rules = [
-            {
-              host = "rss.fkouhailabs.net";
-              http.paths = [
-                {
-                  path = "/";
-                  pathType = "Prefix";
-                  backend.service = {
-                    name = "frontend";
-                    port.number = 4321;
-                  };
-                }
-              ];
-            }
-          ];
+        ingresses.frontend = {
+          metadata.annotations = {
+            "cert-manager.io/issuer" = "fkouhailabs";
+          };
+          spec = {
+            rules = [
+              {
+                host = "rss.fkouhailabs.net";
+                http.paths = [
+                  {
+                    path = "/";
+                    pathType = "Prefix";
+                    backend.service = {
+                      name = "frontend";
+                      port.number = 4321;
+                    };
+                  }
+                ];
+              }
+            ];
+          };
         };
       };
   };
