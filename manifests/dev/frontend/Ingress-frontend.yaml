@@ -5,7 +5,7 @@ metadata:
   namespace: demo
 spec:
   rules:
-    - host: rss.universe.home
+    - host: rss.fkouhailabs.net
       http:
         paths:
           - backend:
