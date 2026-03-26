@@ -20,7 +20,7 @@ spec:
               value: http://locator.demo.svc.cluster.local:3000
             - name: SERVICE_FQDN
               value: notify.demo.svc.cluster.local:3000
-          image: ghcr.io/fkouhai/rss_notify-x86_64-linux:0.2.1
+          image: ghcr.io/fkouhai/rss_notify-x86_64-linux:0.5.0
           imagePullPolicy: IfNotPresent
           livenessProbe:
             httpGet:
@@ -29,5 +29,11 @@ spec:
             initialDelaySeconds: 3
             periodSeconds: 5
           name: notify
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 10
       securityContext:
         fsGroup: 1000
