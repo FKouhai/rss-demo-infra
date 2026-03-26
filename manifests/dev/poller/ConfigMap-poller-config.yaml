@@ -1,6 +1,6 @@
 apiVersion: v1
 data:
-  config.json: '{"rss_feeds":["https://feeds.arstechnica.com/arstechnica/index","https://www.reddit.com/r/kubernetes/.rss","https://determinate.systems/rss.xml"]}'
+  config.json: '{"rss_feeds":["https://feeds.arstechnica.com/arstechnica/index","https://lobste.rs/t/devops.rss","https://hnrss.org/newest?comments=250","https://discordstatus.com/history.rss","https://www.githubstatus.com/history.rss","https://determinate.systems/rss.xml"]}'
 kind: ConfigMap
 metadata:
   name: poller-config
