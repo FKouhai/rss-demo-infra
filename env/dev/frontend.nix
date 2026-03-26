@@ -74,6 +74,12 @@
                 ];
               }
             ];
+            tls = [
+              {
+                hosts = [ "rss.fkouhailabs.net" ];
+                secretName = "rss-http-tls";
+              }
+            ];
           };
         };
       };
