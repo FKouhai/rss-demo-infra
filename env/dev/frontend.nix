@@ -22,12 +22,28 @@
             spec = {
               securityContext.fsGroup = 1000;
               containers.frontend = {
-                image = "ghcr.io/fkouhai/rss_frontend-x86_64-linux:0.2.0";
+                image = "ghcr.io/fkouhai/rss_frontend-x86_64-linux:0.5.0";
                 imagePullPolicy = "IfNotPresent";
+                livenessProbe = {
+                  httpGet = {
+                    path = "/api/healthz";
+                    port = 4321;
+                  };
+                  initialDelaySeconds = 5;
+                  periodSeconds = 10;
+                };
+                readinessProbe = {
+                  httpGet = {
+                    path = "/api/healthz";
+                    port = 4321;
+                  };
+                  initialDelaySeconds = 5;
+                  periodSeconds = 10;
+                };
                 env = [
                   {
-                    name = "POLLER_ENDPOINT";
-                    value = "http://poller.demo.svc.cluster.local:3000/rss";
+                    name = "LOCATOR_URL";
+                    value = "http://locator.demo.svc.cluster.local:3000";
                   }
                 ];
               };

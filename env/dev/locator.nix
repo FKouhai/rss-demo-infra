@@ -22,7 +22,7 @@
             spec = {
               securityContext.fsGroup = 1000;
               containers.locator = {
-                image = "ghcr.io/fkouhai/rss_locator-x86_64-linux:0.2.1";
+                image = "ghcr.io/fkouhai/rss_locator-x86_64-linux:0.5.0";
                 imagePullPolicy = "IfNotPresent";
                 livenessProbe = {
                   httpGet = {
@@ -31,6 +31,14 @@
                   };
                   initialDelaySeconds = 3;
                   periodSeconds = 5;
+                };
+                readinessProbe = {
+                  httpGet = {
+                    path = "/health";
+                    port = 3000;
+                  };
+                  initialDelaySeconds = 3;
+                  periodSeconds = 10;
                 };
                 env = [
                   {
