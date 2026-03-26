@@ -1,11 +1,13 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
+  annotations:
+    cert-manager.io/issuer: fkouhailabs
   name: frontend
   namespace: demo
 spec:
   rules:
-    - host: rss.universe.home
+    - host: rss.fkouhailabs.net
       http:
         paths:
           - backend:
