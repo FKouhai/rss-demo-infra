@@ -57,7 +57,7 @@
         ingresses.frontend.spec = {
           rules = [
             {
-              host = "rss.universe.home";
+              host = "rss.fkouhailabs.net";
               http.paths = [
                 {
                   path = "/";
