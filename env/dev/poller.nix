@@ -14,6 +14,14 @@
         };
       in
       {
+        configMaps.poller-config.data."config.json" = builtins.toJSON {
+          rss_feeds = [
+            "https://feeds.arstechnica.com/arstechnica/index"
+            "https://www.reddit.com/r/kubernetes/.rss"
+            "https://determinate.systems/rss.xml"
+          ];
+        };
+
         # Define a deployment for running an poller server
         deployments.poller.spec = {
           selector.matchLabels = labels;
@@ -21,8 +29,14 @@
             metadata.labels = labels;
             spec = {
               securityContext.fsGroup = 1000;
+              volumes = [
+                {
+                  name = "poller-config";
+                  configMap.name = "poller-config";
+                }
+              ];
               containers.poller = {
-                image = "ghcr.io/fkouhai/rss_poller-x86_64-linux:0.5.0";
+                image = "ghcr.io/fkouhai/rss_poller-x86_64-linux:1.0.0";
                 imagePullPolicy = "IfNotPresent";
                 livenessProbe = {
                   httpGet = {
@@ -40,6 +54,13 @@
                   initialDelaySeconds = 5;
                   periodSeconds = 10;
                 };
+                volumeMounts = [
+                  {
+                    name = "poller-config";
+                    mountPath = "/etc/rss-poller";
+                    readOnly = true;
+                  }
+                ];
                 env = [
                   {
                     name = "OTEL_EP";

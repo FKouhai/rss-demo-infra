@@ -22,7 +22,7 @@
             spec = {
               securityContext.fsGroup = 1000;
               containers.notify = {
-                image = "ghcr.io/fkouhai/rss_notify-x86_64-linux:0.5.0";
+                image = "ghcr.io/fkouhai/rss_notify-x86_64-linux:1.0.0";
                 imagePullPolicy = "IfNotPresent";
                 livenessProbe = {
                   httpGet = {
