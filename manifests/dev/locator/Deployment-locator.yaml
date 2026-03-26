@@ -16,7 +16,7 @@ spec:
         - env:
             - name: OTEL_EP
               value: signoz-otel-collector.signoz.svc.cluster.local:4317
-          image: ghcr.io/fkouhai/rss_locator-x86_64-linux:0.5.0
+          image: ghcr.io/fkouhai/rss_locator-x86_64-linux:1.0.0
           imagePullPolicy: IfNotPresent
           livenessProbe:
             httpGet:
