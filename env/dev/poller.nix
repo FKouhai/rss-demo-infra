@@ -17,7 +17,10 @@
         configMaps.poller-config.data."config.json" = builtins.toJSON {
           rss_feeds = [
             "https://feeds.arstechnica.com/arstechnica/index"
-            "https://www.reddit.com/r/kubernetes/.rss"
+            "https://lobste.rs/t/devops.rss"
+            "https://hnrss.org/newest?comments=250"
+            "https://discordstatus.com/history.rss"
+            "https://www.githubstatus.com/history.rss"
             "https://determinate.systems/rss.xml"
           ];
         };
