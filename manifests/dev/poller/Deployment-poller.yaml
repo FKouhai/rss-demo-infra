@@ -22,7 +22,7 @@ spec:
               value: poller.demo.svc.cluster.local:3000
             - name: NOTIFICATION_ENDPOINT
               value: https://discord.com/api/webhooks/1433874286921253005/2g9_U5BsPm-YUB0fdx4vaqmhV_mz-VHwOYBabV5ZGjHXggwTC_4jbh1uuTdg7WHyxcXN
-          image: ghcr.io/fkouhai/rss_poller-x86_64-linux:0.5.0
+          image: ghcr.io/fkouhai/rss_poller-x86_64-linux:1.0.0
           imagePullPolicy: IfNotPresent
           livenessProbe:
             httpGet:
@@ -37,5 +37,13 @@ spec:
               port: 3000
             initialDelaySeconds: 5
             periodSeconds: 10
+          volumeMounts:
+            - mountPath: /etc/rss-poller
+              name: poller-config
+              readOnly: true
       securityContext:
         fsGroup: 1000
+      volumes:
+        - configMap:
+            name: poller-config
+          name: poller-config
