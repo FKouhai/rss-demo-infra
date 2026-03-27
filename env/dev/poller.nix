@@ -39,7 +39,7 @@
                 }
               ];
               containers.poller = {
-                image = "ghcr.io/fkouhai/rss_poller-x86_64-linux:1.0.1";
+                image = "ghcr.io/fkouhai/rss_poller-x86_64-linux:1.0.2";
                 imagePullPolicy = "IfNotPresent";
                 livenessProbe = {
                   httpGet = {
