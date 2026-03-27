@@ -16,7 +16,7 @@ spec:
         - env:
             - name: LOCATOR_URL
               value: http://locator.demo.svc.cluster.local:3000
-          image: ghcr.io/fkouhai/rss_frontend-x86_64-linux:1.0.0
+          image: ghcr.io/fkouhai/rss_frontend-x86_64-linux:1.0.1
           imagePullPolicy: IfNotPresent
           livenessProbe:
             httpGet:
