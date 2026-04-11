@@ -31,5 +31,7 @@ spec:
               port: 4321
             initialDelaySeconds: 5
             periodSeconds: 10
+      nodeSelector:
+        kubernetes.io/arch: amd64
       securityContext:
         fsGroup: 1000
