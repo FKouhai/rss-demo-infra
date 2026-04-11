@@ -44,7 +44,7 @@
                 env = [
                   {
                     name = "OTEL_EP";
-                    value = "otel-collector.monitoring.svc.cluster.local:4317";
+                    value = "otel-collector-opentelemetry-collector.monitoring.svc.cluster.local:4317";
                   }
                   {
                     name = "LOCATOR_URL";
