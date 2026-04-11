@@ -57,7 +57,7 @@
         };
         ingresses.frontend = {
           metadata.annotations = {
-            "cert-manager.io/issuer" = "fkouhailabs";
+            "cert-manager.io/cluster-issuer" = "fkouhailabs";
           };
           spec = {
             rules = [
