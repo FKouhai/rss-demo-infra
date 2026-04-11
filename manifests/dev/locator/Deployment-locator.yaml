@@ -15,7 +15,7 @@ spec:
       containers:
         - env:
             - name: OTEL_EP
-              value: signoz-otel-collector.signoz.svc.cluster.local:4317
+              value: otel-collector.monitoring.svc.cluster.local:4317
           image: ghcr.io/fkouhai/rss_locator-x86_64-linux:1.0.1
           imagePullPolicy: IfNotPresent
           livenessProbe:
