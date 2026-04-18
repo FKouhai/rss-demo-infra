@@ -23,7 +23,7 @@
               nodeSelector."kubernetes.io/arch" = "amd64";
               securityContext.fsGroup = 1000;
               containers.frontend = {
-                image = "ghcr.io/fkouhai/rss_frontend-x86_64-linux:1.0.1";
+                image = "ghcr.io/fkouhai/rss_frontend-x86_64-linux:1.0.4";
                 imagePullPolicy = "IfNotPresent";
                 livenessProbe = {
                   httpGet = {
