@@ -20,7 +20,7 @@ spec:
               value: http://locator.demo.svc.cluster.local:3000
             - name: SERVICE_FQDN
               value: notify.demo.svc.cluster.local:3000
-          image: ghcr.io/fkouhai/rss_notify-x86_64-linux:1.0.1
+          image: ghcr.io/fkouhai/rss_notify-x86_64-linux:1.0.4
           imagePullPolicy: IfNotPresent
           livenessProbe:
             httpGet:
