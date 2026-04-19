@@ -16,11 +16,13 @@ spec:
         - env:
             - name: OTEL_EP
               value: otel-collector-opentelemetry-collector.monitoring.svc.cluster.local:4317
+            - name: SERVICE_VERSION
+              value: 1.0.5
             - name: LOCATOR_URL
               value: http://locator.demo.svc.cluster.local:3000
             - name: SERVICE_FQDN
               value: notify.demo.svc.cluster.local:3000
-          image: ghcr.io/fkouhai/rss_notify-x86_64-linux:1.0.4
+          image: ghcr.io/fkouhai/rss_notify-x86_64-linux:1.0.5
           imagePullPolicy: IfNotPresent
           livenessProbe:
             httpGet:
