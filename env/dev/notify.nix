@@ -1,3 +1,4 @@
+{ config, ... }:
 {
   applications.notify = {
     # All resources will be deployed into this namespace.
@@ -23,7 +24,7 @@
               nodeSelector."kubernetes.io/arch" = "amd64";
               securityContext.fsGroup = 1000;
               containers.notify = {
-                image = "ghcr.io/fkouhai/rss_notify-x86_64-linux:1.0.4";
+                image = "ghcr.io/fkouhai/rss_notify-x86_64-linux:${config.demo.version}";
                 imagePullPolicy = "IfNotPresent";
                 livenessProbe = {
                   httpGet = {
@@ -45,6 +46,10 @@
                   {
                     name = "OTEL_EP";
                     value = "otel-collector-opentelemetry-collector.monitoring.svc.cluster.local:4317";
+                  }
+                  {
+                    name = "SERVICE_VERSION";
+                    value = config.demo.version;
                   }
                   {
                     name = "LOCATOR_URL";

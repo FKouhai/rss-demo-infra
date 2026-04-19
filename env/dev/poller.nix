@@ -1,3 +1,4 @@
+{ config, ... }:
 {
   applications.poller = {
     # All resources will be deployed into this namespace.
@@ -40,7 +41,7 @@
                 }
               ];
               containers.poller = {
-                image = "ghcr.io/fkouhai/rss_poller-x86_64-linux:1.0.4";
+                image = "ghcr.io/fkouhai/rss_poller-x86_64-linux:${config.demo.version}";
                 imagePullPolicy = "IfNotPresent";
                 livenessProbe = {
                   httpGet = {
@@ -69,6 +70,10 @@
                   {
                     name = "OTEL_EP";
                     value = "otel-collector-opentelemetry-collector.monitoring.svc.cluster.local:4317";
+                  }
+                  {
+                    name = "SERVICE_VERSION";
+                    value = config.demo.version;
                   }
                   {
                     name = "LOCATOR_URL";

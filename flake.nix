@@ -27,6 +27,7 @@
           envs = {
             dev.modules = [
               ./env/dev/dev.nix
+              ./env/dev/version.nix
               ./env/dev/poller.nix
               ./env/dev/frontend.nix
               ./env/dev/notify.nix
