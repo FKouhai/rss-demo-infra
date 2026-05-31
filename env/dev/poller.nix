@@ -17,6 +17,7 @@
       {
         configMaps.poller-config.data."config.json" = builtins.toJSON {
           rss_feeds = [
+            "https://frankybirdman.substack.com/feed"
             "https://feeds.arstechnica.com/arstechnica/index"
             "https://lobste.rs/t/devops.rss"
             "https://hnrss.org/newest?comments=250"
