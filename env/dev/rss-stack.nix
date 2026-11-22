@@ -67,7 +67,8 @@ in
           };
           outbox = (tagged "rss-outbox") // {
             db = {
-              driver = "sqlite";
+              driver = "postgres";
+              postgres.dsnSecret = "rss-outbox-db";
               sqlite.storage = "1Gi";
             };
             podAnnotations."backup.velero.io/backup-volumes" = "data";
@@ -76,14 +77,16 @@ in
           };
           aggregator = (tagged "rss-aggregator") // {
             db = {
-              driver = "sqlite";
+              driver = "postgres";
+              postgres.dsnSecret = "rss-aggregator-db";
               sqlite.storage = "1Gi";
             };
             podAnnotations."backup.velero.io/backup-volumes" = "data";
           };
           config = (tagged "rss-config") // {
             db = {
-              driver = "sqlite";
+              driver = "postgres";
+              postgres.dsnSecret = "rss-config-db";
               sqlite.storage = "1Gi";
             };
             podAnnotations."backup.velero.io/backup-volumes" = "data";
@@ -91,7 +94,8 @@ in
             adminGroups = "admins";
           };
           frontend = (tagged "rss-frontend") // {
-            oidc = {
+            # Must match config's adminGroups and the IdP group.
+            adminGroups = "admins";            oidc = {
               issuer = "https://id.fkouhailabs.net";
               clientID = "d01f93ef-572c-4319-925a-e42561b457c5";
               clientSecret.secretName = "rss-oidc";
