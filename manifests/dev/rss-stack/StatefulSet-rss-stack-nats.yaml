@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  labels:
+    app.kubernetes.io/instance: rss-stack
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: nats
+    app.kubernetes.io/part-of: rss-stack
+  name: rss-stack-nats
+  namespace: demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: rss-stack
+      app.kubernetes.io/name: nats
+  serviceName: rss-stack-nats
+  template:
+    metadata:
+      annotations:
+        backup.velero.io/backup-volumes: data
+      labels:
+        app.kubernetes.io/instance: rss-stack
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/name: nats
+        app.kubernetes.io/part-of: rss-stack
+    spec:
+      containers:
+        - args:
+            - -js
+            - -m
+            - "8222"
+            - --store_dir
+            - /data/jetstream
+          image: nats:2.14.3
+          name: nats
+          ports:
+            - containerPort: 4222
+              name: client
+            - containerPort: 6222
+              name: cluster
+            - containerPort: 8222
+              name: monitor
+          volumeMounts:
+            - mountPath: /data/jetstream
+              name: data
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
