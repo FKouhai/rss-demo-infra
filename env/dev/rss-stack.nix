@@ -27,7 +27,7 @@ in
         version = version;
         # First eval with lib.fakeHash, then paste the real hash
         # from the error. Re-pin on every version bump.
-        chartHash = "sha256-axKhI9xIETqzfaKHya1i6ggSJV5R5AiGJXYZ7K/OLk4=";
+        chartHash = "sha256-IHmJH3XEGXcJyK2o3dn7rQRll386wVz+X8yNqpNszak=";
       };
 
       values = {
