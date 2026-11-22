@@ -35,9 +35,12 @@ spec:
             - name: OUTBOX_NATS_RETRY_BUDGET
               value: 60s
             - name: OUTBOX_DB_DRIVER
-              value: sqlite
+              value: postgres
             - name: OUTBOX_DB_DSN
-              value: /var/lib/rss-outbox/outbox.db
+              valueFrom:
+                secretKeyRef:
+                  key: dsn
+                  name: rss-outbox-db
           image: ghcr.io/fkouhai/rss_outbox-x86_64-linux:2.0.0-rc-3
           livenessProbe:
             httpGet:
@@ -54,12 +57,5 @@ spec:
               port: 3000
             initialDelaySeconds: 5
             periodSeconds: 5
-          volumeMounts:
-            - mountPath: /var/lib/rss-outbox
-              name: data
       nodeSelector:
         kubernetes.io/arch: amd64
-      volumes:
-        - name: data
-          persistentVolumeClaim:
-            claimName: rss-stack-outbox

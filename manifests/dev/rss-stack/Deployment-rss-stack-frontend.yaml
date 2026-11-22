@@ -41,7 +41,7 @@ spec:
             - name: CONFIG_URL
               value: http://rss-stack-config:3000
             - name: CONFIG_ADMIN_GROUPS
-              value: admin
+              value: admins
             - name: OIDC_ISSUER_URL
               value: https://id.fkouhailabs.net
             - name: OIDC_CLIENT_ID
