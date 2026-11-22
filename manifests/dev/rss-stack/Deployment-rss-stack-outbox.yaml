@@ -38,7 +38,7 @@ spec:
               value: sqlite
             - name: OUTBOX_DB_DSN
               value: /var/lib/rss-outbox/outbox.db
-          image: ghcr.io/fkouhai/rss_outbox_x86_64-linux:2.0.0-rc-3
+          image: ghcr.io/fkouhai/rss_outbox-x86_64-linux:2.0.0-rc-3
           livenessProbe:
             httpGet:
               path: /healthz
