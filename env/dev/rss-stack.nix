@@ -92,8 +92,7 @@ in
           };
           frontend = (tagged "rss-frontend") // {
             oidc = {
-              # Issuer = your Pocket-ID base URL (must serve OIDC discovery).
-              issuer = "https://idp.fkouhailabs.net";
+              issuer = "https://id.fkouhailabs.net";
               clientID = "d01f93ef-572c-4319-925a-e42561b457c5";
               clientSecret.secretName = "rss-oidc";
               sessionKey.secretName = "rss-oidc";
