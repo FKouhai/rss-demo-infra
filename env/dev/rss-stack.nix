@@ -27,7 +27,7 @@ in
         version = version;
         # First eval with lib.fakeHash, then paste the real hash
         # from the error. Re-pin on every version bump.
-        chartHash = "sha256-Ktb+mcAdhojx6T4AyV2yKL4YpLP5v5Q0to49WU4fBrc=";
+        chartHash = "sha256-M/AMv7vZ8jQHkWE2YxbMMMYTCe6wjtRyIJvqAgdP9fA=";
       };
 
       values = {
@@ -40,6 +40,14 @@ in
         nats = {
           enabled = true;
           podAnnotations."backup.velero.io/backup-volumes" = "data";
+        };
+
+        # Prometheus Operator is in-cluster with a cluster-wide selector:
+        # scrapes every ServiceMonitor, no additionalLabels needed.
+        monitoring = {
+          enabled = true;
+          interval = "30s";
+          scrapeTimeout = "10s";
         };
 
         secrets = {
