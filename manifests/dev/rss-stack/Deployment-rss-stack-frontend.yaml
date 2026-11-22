@@ -1,0 +1,83 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/instance: rss-stack
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: rss-frontend
+    app.kubernetes.io/part-of: rss-stack
+  name: rss-stack-frontend
+  namespace: demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: rss-stack
+      app.kubernetes.io/name: rss-frontend
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/instance: rss-stack
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/name: rss-frontend
+        app.kubernetes.io/part-of: rss-stack
+    spec:
+      containers:
+        - env:
+            - name: SERVICE_FQDN
+              value: rss-stack-frontend:4321
+            - name: FRONTEND_HTTP_ADDR
+              value: :4321
+            - name: OTEL_EP
+              value: otel-collector-opentelemetry-collector.monitoring.svc.cluster.local:4317
+            - name: AGGREGATOR_URL
+              value: http://rss-stack-aggregator:3000
+            - name: OUTBOX_URL
+              value: http://rss-stack-outbox:3000
+            - name: POLLER_URL
+              value: http://rss-stack-poller:3000
+            - name: NOTIFY_URL
+              value: http://rss-stack-notify:3000
+            - name: CONFIG_URL
+              value: http://rss-stack-config:3000
+            - name: CONFIG_ADMIN_GROUPS
+              value: admin
+            - name: OIDC_ISSUER_URL
+              value: https://idp.fkouhailabs.net
+            - name: OIDC_CLIENT_ID
+              value: d01f93ef-572c-4319-925a-e42561b457c5
+            - name: OIDC_REDIRECT_URL
+              value: https://rss.fkouhailabs.net/auth/callback
+            - name: OIDC_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  key: oidc-client-secret
+                  name: rss-oidc
+            - name: AUTH_SESSION_KEY
+              valueFrom:
+                secretKeyRef:
+                  key: session-key
+                  name: rss-oidc
+            - name: CONFIG_GATEWAY_SECRET
+              valueFrom:
+                secretKeyRef:
+                  key: gateway-secret
+                  name: rss-secrets
+          image: ghcr.io/fkouhai/rss-frontend_x86_64-linux:2.0.0-rc-3
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 4321
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          name: frontend
+          ports:
+            - containerPort: 4321
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: 4321
+            initialDelaySeconds: 5
+            periodSeconds: 5
+      nodeSelector:
+        kubernetes.io/arch: amd64

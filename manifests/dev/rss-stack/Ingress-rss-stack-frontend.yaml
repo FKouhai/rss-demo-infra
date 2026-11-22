@@ -3,7 +3,12 @@ kind: Ingress
 metadata:
   annotations:
     cert-manager.io/cluster-issuer: fkouhailabs
-  name: frontend
+  labels:
+    app.kubernetes.io/instance: rss-stack
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: rss-frontend
+    app.kubernetes.io/part-of: rss-stack
+  name: rss-stack-frontend
   namespace: demo
 spec:
   rules:
@@ -12,9 +17,9 @@ spec:
         paths:
           - backend:
               service:
-                name: frontend
+                name: rss-stack-frontend
                 port:
-                  number: 4321
+                  number: 80
             path: /
             pathType: Prefix
   tls:
