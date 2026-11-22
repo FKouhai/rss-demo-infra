@@ -31,9 +31,12 @@ spec:
             - name: OTEL_EP
               value: otel-collector-opentelemetry-collector.monitoring.svc.cluster.local:4317
             - name: CONFIG_DB_DRIVER
-              value: sqlite
+              value: postgres
             - name: CONFIG_DB_DSN
-              value: /var/lib/rss-config/config.db
+              valueFrom:
+                secretKeyRef:
+                  key: dsn
+                  name: rss-config-db
             - name: CONFIG_ADMIN_GROUPS
               value: admins
             - name: CONFIG_GATEWAY_SECRET
@@ -57,12 +60,5 @@ spec:
               port: 3000
             initialDelaySeconds: 5
             periodSeconds: 5
-          volumeMounts:
-            - mountPath: /var/lib/rss-config
-              name: data
       nodeSelector:
         kubernetes.io/arch: amd64
-      volumes:
-        - name: data
-          persistentVolumeClaim:
-            claimName: rss-stack-config
