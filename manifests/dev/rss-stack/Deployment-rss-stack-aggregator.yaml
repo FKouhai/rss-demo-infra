@@ -41,7 +41,7 @@ spec:
                 secretKeyRef:
                   key: dsn
                   name: rss-aggregator-db
-          image: ghcr.io/fkouhai/rss_aggregator-x86_64-linux:2.0.1
+          image: ghcr.io/fkouhai/rss_aggregator-x86_64-linux:2.0.2
           livenessProbe:
             httpGet:
               path: /healthz
