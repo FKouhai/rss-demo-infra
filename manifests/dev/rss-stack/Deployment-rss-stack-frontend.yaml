@@ -63,7 +63,7 @@ spec:
                 secretKeyRef:
                   key: gateway-secret
                   name: rss-secrets
-          image: ghcr.io/fkouhai/rss_frontend_x86_64-linux:2.0.0-rc-3
+          image: ghcr.io/fkouhai/rss_frontend-x86_64-linux:2.0.0-rc-3
           livenessProbe:
             httpGet:
               path: /healthz
