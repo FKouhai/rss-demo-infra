@@ -43,7 +43,7 @@ spec:
             - name: CONFIG_ADMIN_GROUPS
               value: admin
             - name: OIDC_ISSUER_URL
-              value: https://idp.fkouhailabs.net
+              value: https://id.fkouhailabs.net
             - name: OIDC_CLIENT_ID
               value: d01f93ef-572c-4319-925a-e42561b457c5
             - name: OIDC_REDIRECT_URL
