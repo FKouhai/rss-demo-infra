@@ -5,8 +5,11 @@ let
   version = config.demo.version;
   arch = "x86_64-linux";
   tagged = svc: {
-    # GHCR names use underscores (release workflow maps "-" to "_").
-    repository = "${lib.replaceStrings [ "-" ] [ "_" ] svc}_${arch}";
+    # Full GHCR repo: underscores in the service part (release workflow
+    # maps "-" to "_"), dash before the arch. Matches the published
+    # tags exactly; the chart's archSuffix default covers this from
+    # the next chart cut, when this hardcodes back down to base names.
+    repository = "${lib.replaceStrings [ "-" ] [ "_" ] svc}-${arch}";
     tag = version;
   };
 in
