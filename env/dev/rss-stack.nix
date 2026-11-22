@@ -5,11 +5,9 @@ let
   version = config.demo.version;
   arch = "x86_64-linux";
   tagged = svc: {
-    # Full GHCR repo: underscores in the service part (release workflow
-    # maps "-" to "_"), dash before the arch. Matches the published
-    # tags exactly; the chart's archSuffix default covers this from
-    # the next chart cut, when this hardcodes back down to base names.
-    repository = "${lib.replaceStrings [ "-" ] [ "_" ] svc}-${arch}";
+    # Base GHCR repo (underscores); the chart appends archSuffix
+    # ("-x86_64-linux") to match the published tags.
+    repository = "${lib.replaceStrings [ "-" ] [ "_" ] svc}";
     tag = version;
   };
 in
@@ -29,7 +27,7 @@ in
         version = version;
         # First eval with lib.fakeHash, then paste the real hash
         # from the error. Re-pin on every version bump.
-        chartHash = "sha256-fxHdEukx3sWRKX9iEtM57l9alfMIF1JIO599uZ3N8gQ=";
+        chartHash = "sha256-axKhI9xIETqzfaKHya1i6ggSJV5R5AiGJXYZ7K/OLk4=";
       };
 
       values = {
