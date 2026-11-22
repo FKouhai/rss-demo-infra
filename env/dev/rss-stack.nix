@@ -5,7 +5,8 @@ let
   version = config.demo.version;
   arch = "x86_64-linux";
   tagged = svc: {
-    repository = "${svc}_${arch}";
+    # GHCR names use underscores (release workflow maps "-" to "_").
+    repository = "${lib.replaceStrings [ "-" ] [ "_" ] svc}_${arch}";
     tag = version;
   };
 in
