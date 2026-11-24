@@ -27,7 +27,7 @@ in
         version = version;
         # First eval with lib.fakeHash, then paste the real hash
         # from the error. Re-pin on every version bump.
-        chartHash = "sha256-M/AMv7vZ8jQHkWE2YxbMMMYTCe6wjtRyIJvqAgdP9fA=";
+        chartHash = "sha256-YQddeXSoakuLhrm90NIBH9VGk9ZBQnRQlIzrf23Ierg=";
       };
 
       values = {
@@ -101,7 +101,8 @@ in
           };
           frontend = (tagged "rss-frontend") // {
             # Must match config's adminGroups and the IdP group.
-            adminGroups = "admins";            oidc = {
+            adminGroups = "admins";
+            oidc = {
               issuer = "https://id.fkouhailabs.net";
               clientID = "d01f93ef-572c-4319-925a-e42561b457c5";
               clientSecret.secretName = "rss-oidc";
