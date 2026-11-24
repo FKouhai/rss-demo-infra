@@ -42,6 +42,8 @@ spec:
               value: http://rss-stack-config:3000
             - name: CONFIG_ADMIN_GROUPS
               value: admins
+            - name: MAX_IMPORT_FEEDS
+              value: "500"
             - name: OIDC_ISSUER_URL
               value: https://id.fkouhailabs.net
             - name: OIDC_CLIENT_ID
@@ -63,7 +65,7 @@ spec:
                 secretKeyRef:
                   key: gateway-secret
                   name: rss-secrets
-          image: ghcr.io/fkouhai/rss_frontend-x86_64-linux:2.1.1
+          image: ghcr.io/fkouhai/rss_frontend-x86_64-linux:2.2.0
           livenessProbe:
             httpGet:
               path: /healthz

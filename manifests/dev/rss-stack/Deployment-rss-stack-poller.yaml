@@ -44,7 +44,7 @@ spec:
                 secretKeyRef:
                   key: webhook-url
                   name: rss-secrets
-          image: ghcr.io/fkouhai/rss_poller-x86_64-linux:2.1.1
+          image: ghcr.io/fkouhai/rss_poller-x86_64-linux:2.2.0
           livenessProbe:
             httpGet:
               path: /healthz
